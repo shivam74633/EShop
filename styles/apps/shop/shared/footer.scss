@@ -1,0 +1,15 @@
+.footer{
+    width: 1100px;
+    margin: 0 auto;
+    background-color: #f2ebe1;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .icon{
+        .pi{
+            margin-right: 15px;
+        }
+    }
+}

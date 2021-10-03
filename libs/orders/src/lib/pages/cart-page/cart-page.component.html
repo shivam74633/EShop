@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+<div class="cart-page">
+    <div class="p-grid">
+        <div class="p-col-8">
+            <div class="p-mb-5">
+                <p-button label="Continue shopping" icon="pi pi-arrow-left" (onClick)="backToShop()">
+                </p-button>
+            </div>
+            <div class="p-mb-5">
+                <h4>My Cart: {{ cartCount }} Item(s)</h4>
+            </div>
+            <div class="cart-shipping p-mb-5">
+                Shipping after the payment, Delivery time : 1 to 4 working days.
+            </div>
+
+            <div class="cart-item p-mb-5" *ngFor="let cartItem of cartItemsDetails">
+                <div class="p-grid p-fluid">
+                <div class="p-col-2 cart-item-image">
+                    <img [src]="cartItem.product.image" [attr.alt]="cartItem.product.name">
+                </div>
+                <div class="p-col-7">
+                    <div class="cart-item-name">
+                        {{ cartItem.product.name }}
+                    </div>
+                    <div class="cart-item-price">
+                        {{ cartItem.product.price | currency}}
+                    </div>
+                    <div class="cart-item-remove">
+                        <p-button icon="pi pi-trash" (onClick)="deleteCartItem(cartItem)"></p-button>
+                    </div>
+                </div>
+                <div class="p-col-3">
+                    <div class="p-field">
+                        <p-inputNumber  [(ngModel)]="cartItem.quantity" [showButtons]="true" [inputId]="cartItem.product.id" mode="decimal" [min]="0" [max]="100" (onInput)="updateCartItemQuantity($event,cartItem)">
+                        </p-inputNumber>
+                    </div>
+                    <div class="cart-item-subtotal">
+                        Subtotal: 
+                        <span class="cart-item-subtotal-value">{{ cartItem.product.price| currency}}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="p-col-4">
+            <shivam-order-summary></shivam-order-summary>
+        </div>
+    </div>
+</div>

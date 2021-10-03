@@ -1,0 +1,8 @@
+<div class="checkout-page">
+    <div *ngIf="!orderPlaced">Waiting for Order Confirmation</div>
+    <div class="thankyou-page" *ngIf="orderPlaced" style="text-align: center;">
+        <h1>Thankyou for your order.</h1>
+        <h3>We have recieved your order and it will be delivered in 3-4 working days.</h3>
+        <p-button label="Back to shop" routerLink="/"></p-button>
+    </div>
+</div>

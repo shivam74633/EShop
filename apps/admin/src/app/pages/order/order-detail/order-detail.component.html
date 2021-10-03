@@ -1,0 +1,60 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="orderDetail != {}">
+    <p-card header="Order Detail" subheader="You can edit order status here">
+        <p-fieldset styleClass="p-mb-4" legend="Order Details" [toggleable]="true">
+            <div class="p-grid">
+                <div class="p-col-4">
+                    <h5>Order Id</h5>
+                    <p>{{ orderDetail.id }}</p>
+                </div>
+                <div class="p-col-4">
+                    <h5>Order Date</h5>
+                    <p>{{ orderDetail.dateOrdered | date: 'short' }}</p>
+                </div>
+                <div class="p-col-4">
+                    <h5>Order Status</h5>
+                    <p-dropdown (onChange)="onStatusChange($event)" [options]="orderStauses" [(ngModel)]="selectedStatus" optionLabel="name" optionValue="id"></p-dropdown>
+                </div>
+                <div class="p-col-4">
+                    <h5>Order Total Price</h5>
+                    <p>{{ orderDetail.totalPrice | currency}}</p>
+                </div>
+            </div>
+        </p-fieldset>
+        <p-fieldset styleClass="p-mb-4" legend="Order Items" [toggleable]="true">
+            <div class="p-grid p-mb-5" style="font-weight: bolder;">
+                <div class="p-col-2" style="font-weight: bold;">Name</div>
+                <div class="p-col-2">Brand</div>
+                <div class="p-col-2">Category</div>
+                <div class="p-col-2">Price</div>
+                <div class="p-col-2">Quantity</div>
+                <div class="p-col-2">Sub Total</div>
+            </div>
+            <div class="p-grid p-mb-5" *ngFor="let orderItem of orderDetail.orderItems">
+                <div class="p-col-2">{{ orderItem.product.name }}</div>
+                <div class="p-col-2">{{ orderItem.product.brand }}</div>
+                <div class="p-col-2">{{ orderItem.product.category.name }}</div>
+                <div class="p-col-2">{{ orderItem.product.price | currency}}</div>
+                <div class="p-col-2">{{ orderItem.quantity }}</div>
+                <div class="p-col-2">{{ orderItem.product.price * orderItem.quantity | currency  }}</div>
+            </div>
+            <div class="p-grid" style="color: green;">
+                <div class="p-col-2 p-offset-8" >Total Price</div>
+                <div class="p-col-2">{{ orderDetail.totalPrice | currency }}</div>
+            </div>
+            </p-fieldset>
+        <p-fieldset styleClass="p-mb-4" legend="Order Address" [toggleable]="true">
+            <div class="p-grid">
+                <div class="p-col-4"> <h5>Order Address</h5></div>
+                <div class="p-col-4"> <h5>Customer Name</h5> </div>
+                <div class="p-col-4"> <h5>Customer Info</h5></div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col-4">{{ orderDetail.shippingAddress1 }},{{orderDetail.shippingAddress2}},{{orderDetail.city}}, {{ orderDetail.zip }} <br> {{ orderDetail.country }}</div>
+                <div class="p-col-4">{{ orderDetail.user.name }}</div>
+                <div class="p-col-4"> {{ orderDetail.user.email }} <br> {{ orderDetail.user.phone }}</div>
+            </div>
+        </p-fieldset>
+    </p-card>
+    
+</div>

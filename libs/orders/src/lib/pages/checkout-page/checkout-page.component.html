@@ -1,0 +1,69 @@
+<div class="checkout-page">
+    <div>
+        <p-button label="Back to cart" icon="pi pi-arrow-left" (onClick)="backToCart()">
+        </p-button>
+    </div>
+    <div class="checkout-form p-mt-5">
+        <div class="p-grid">
+            <div class="p-col-8">
+               <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="name">Name</label>
+                            <input formControlName="name" id="name" type="text" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.name.invalid &&isSubmitted">Name is required </small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="email">Email</label> <br>
+                            <input formControlName="email" id="email" type="email" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.email.invalid &&isSubmitted"><span *ngIf="checkOutForm.email.errors?.required">Email is required</span> <span *ngIf="checkOutForm.email.errors?.email">Email is Required</span></small>
+                        </div>
+                        <div class="p-field p-col-4">
+                            <label for="phone">Phone</label> <br>
+                            <input formControlName="phone" id="phone" type="tel" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.phone.invalid &&isSubmitted">Phone is required </small>
+                        </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="street">Street</label>
+                            <input formControlName="street" id="street" type="text" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.street.invalid &&isSubmitted">Street is required </small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="apartment">Apartment</label>
+                            <input formControlName="apartment" id="apartment" type="text" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.apartment.invalid &&isSubmitted">Apartment is required </small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="email">Zip Code</label> <br>
+                            <input formControlName="zip" id="zip" type="text" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.zip.invalid &&isSubmitted">Zip code is required </small>
+                        </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-4">
+                            <label for="city">City</label> <br>
+                            <input formControlName="city" id="city" type="text" pInputText> 
+                            <small class="p-error" *ngIf="checkOutForm.city.invalid &&isSubmitted">City is required </small>
+                        </div>
+                        
+                        <div class="p-field p-col-4">
+                            <label for="country">Country</label> <br>
+
+                            <p-dropdown [options]="countries" formControlName="country" optionLabel="name" [filter]="true" [showClear]='true' filterBy="name" placeholder="Select a Country"></p-dropdown>
+                            <small class="p-error" *ngIf="checkOutForm.country.invalid &&isSubmitted">Country is required </small>
+
+                        </div>
+                    </div>
+               </form>
+            </div>
+            <div class="p-col-4 checkout-button">
+                <shivam-order-summary></shivam-order-summary>
+                <p-button (onClick)="placeOrder()" label="Place Order">
+                </p-button>
+            </div>
+    </div>
+</div>
